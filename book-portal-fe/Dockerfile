@@ -1,9 +1,9 @@
 # build environment
-FROM node:alpine as build
+FROM node:18-alpine AS build
 WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
-COPY package.json /app/package.json
-RUN npm install --silent
+COPY package*.json /app/
+RUN npm ci --silent
 COPY . /app
 RUN npm run build
 
